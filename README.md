@@ -61,7 +61,7 @@ On top of those, each section has a few typed fields that other tools are likely
 | `bank` | Bank | `currency`, `code`, `issuer`, `denominations` |
 | `passport` | Passport | `colour` |
 | `rank` | Rank | `branches`, `ranks` (`name`, `branch`) |
-| `cities` | Cities | `urbanisation`, `list` (`name`, `population`, `capital`) |
+| `cities` | Cities | `population`, `urbanisation`, `largestShare`, `exponent`, `list` (`name`, `population`, `capital`) |
 | `anthem` | Anthem | `title`, `lyrics` |
 | `wiki` | Wiki | `drivesOn` |
 

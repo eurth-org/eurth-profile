@@ -745,11 +745,29 @@ export default {
         "updated": {
           "$ref": "#/$defs/updated"
         },
+        "population": {
+          "description": "The total population the cities were sized for. Cities keeps its own copy, so its list still adds up after the number in \"stats\" has changed.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
         "urbanisation": {
           "description": "The share of people who live in towns and cities, in per cent.",
           "type": "number",
           "minimum": 0,
           "maximum": 100
+        },
+        "largestShare": {
+          "description": "The largest city's share of the urban population, in per cent, for example 28.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "exponent": {
+          "description": "The rank-size exponent: the city of rank n has the largest city's population divided by n to this power. 1 is the plain rank-size rule, where the second city is half the first and the third a third.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3
         },
         "list": {
           "description": "The cities, largest first.",

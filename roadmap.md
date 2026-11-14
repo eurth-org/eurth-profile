@@ -18,6 +18,7 @@ Three parts: what comes next, what each release added (newest first), and what's
 The first version.
 
 - **The format:** schema 1, as JSON Schema (draft 2020-12). `meta` plus sixteen optional sections: identity, flag, arms, government, seats, names, stats, dynasty, calendar, timeline, bank, passport, rank, cities, anthem and wiki. Every section shares `link`, `summary` and `updated`, and has at most six typed fields of its own, all optional.
+- **Cities' inputs and settings:** `cities.population`, `cities.largestShare` and `cities.exponent` beside `urbanisation` and `list`, so the section holds the whole calculation and not only its result.
 - **Unknown keys kept everywhere,** at the top level and inside every section, so later 1.x releases can add fields without breaking older tools.
 - **Ownership as data:** `SECTION_OWNERS` says which tool may write which section.
 - **Checking without Ajv:** a small checker that reads the schema itself and runs under a strict content security policy, with messages written for people. The tests hold it to Ajv's verdict.
