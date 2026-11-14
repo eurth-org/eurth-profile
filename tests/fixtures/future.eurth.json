@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "schema": 1,
+    "nation": "Calderwyn",
+    "updated": "2026-11-13T21:05:44.000Z",
+    "madeWith": "flag 1.7",
+    "revision": 42
+  },
+  "identity": {
+    "commonName": "Calderwyn",
+    "capital": "Haldermouth",
+    "nickname": "The Lantern Coast",
+    "anniversaries": [
+      {
+        "day": "12 Blossom",
+        "what": "Charter Day"
+      }
+    ]
+  },
+  "flag": {
+    "link": "https://flag.eurth.org/#example-calderwyn",
+    "ratio": "2:3",
+    "waving": {
+      "speed": 2,
+      "wind": [
+        0.5,
+        -1.25,
+        1e+21
+      ],
+      "enabled": false,
+      "note": null
+    },
+    "colours": [
+      "#123a5a",
+      "#f2f0e6"
+    ],
+    "updated": "2026-11-13T21:05:44.000Z",
+    "afterUpdated": "kept in its place"
+  },
+  "cities": {
+    "list": [
+      {
+        "name": "Haldermouth",
+        "capital": true,
+        "twinnedWith": [
+          "Marrowgate"
+        ]
+      }
+    ]
+  },
+  "weather": {
+    "climate": "Oceanic",
+    "rainyDays": 212,
+    "seasons": [
+      "Thaw",
+      "Bloom",
+      "Reaping",
+      "Frost"
+    ],
+    "updated": "2026-10-01T08:00:00.000Z"
+  },
+  "motd": "Tabs\tand \"quotes\", a backslash \\ and a snowman ☃ stay as they are.",
+  "constructor": {
+    "prototype": {
+      "polluted": true
+    }
+  },
+  "zebra": [],
+  "apple": {},
+  "luckyNumber": 7
+}

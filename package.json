@@ -1,0 +1,60 @@
+{
+  "name": "@eurth/profile",
+  "version": "1.0.0",
+  "description": "The Eurth nation profile: one small JSON file that carries a nation from one Eurth worldbuilding tool to the next. Schema, types and a small library to read, check, merge, save and load it.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Orioni (https://eurth.org)",
+  "homepage": "https://eurth.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eurth-org/eurth-profile.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "sideEffects": false,
+  "files": [
+    "src",
+    "dist",
+    "schema",
+    "examples",
+    "roadmap.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./schema.json": "./schema/eurth-profile.schema.json",
+    "./ProfileButtons.svelte": {
+      "svelte": "./src/ProfileButtons.svelte",
+      "default": "./src/ProfileButtons.svelte"
+    },
+    "./examples/*": "./examples/*",
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "check": "tsc -p tsconfig.json",
+    "build": "node tools/build.js",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "svelte": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "jsdom": "^31.0.1",
+    "json-schema-to-typescript": "^16.0.0",
+    "svelte": "^5.57.3",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  }
+}

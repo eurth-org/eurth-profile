@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 26
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      # dist/ is committed, because tools install straight from the repository.
+      # Fail if the build changed it or added to it: build and commit dist/ with the change.
+      - name: dist/ is up to date
+        run: |
+          git diff --exit-code dist
+          test -z "$(git status --porcelain dist)"
+      - run: npm test

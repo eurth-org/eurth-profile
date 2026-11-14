@@ -1,0 +1,628 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://style.eurth.org/schemas/eurth-profile-1.json",
+  "title": "Eurth profile",
+  "description": "A nation's profile, passed between the Eurth worldbuilding tools as one file, <nation>.eurth.json. Each tool fills in its own section and leaves every other key exactly as it found it, including keys it doesn't know. Only \"meta\" is required. All text is plain text: show it as text, never as markup.",
+  "type": "object",
+  "required": ["meta"],
+  "additionalProperties": true,
+  "properties": {
+    "meta": { "$ref": "#/$defs/meta" },
+    "identity": { "$ref": "#/$defs/identity" },
+    "flag": { "$ref": "#/$defs/flag" },
+    "arms": { "$ref": "#/$defs/arms" },
+    "government": { "$ref": "#/$defs/government" },
+    "seats": { "$ref": "#/$defs/seats" },
+    "names": { "$ref": "#/$defs/names" },
+    "stats": { "$ref": "#/$defs/stats" },
+    "dynasty": { "$ref": "#/$defs/dynasty" },
+    "calendar": { "$ref": "#/$defs/calendar" },
+    "timeline": { "$ref": "#/$defs/timeline" },
+    "bank": { "$ref": "#/$defs/bank" },
+    "passport": { "$ref": "#/$defs/passport" },
+    "rank": { "$ref": "#/$defs/rank" },
+    "cities": { "$ref": "#/$defs/cities" },
+    "anthem": { "$ref": "#/$defs/anthem" },
+    "wiki": { "$ref": "#/$defs/wiki" }
+  },
+  "$defs": {
+    "link": {
+      "description": "The tool's share link for this section. Opening it in the tool brings back the full design. It must be an https link.",
+      "type": "string",
+      "maxLength": 4000,
+      "pattern": "^https://[!-~]+$",
+      "examples": ["https://flag.eurth.org/"]
+    },
+    "summary": {
+      "description": "One plain-text paragraph that describes this section, for tools that only want to show a line or two.",
+      "type": "string",
+      "maxLength": 600
+    },
+    "updated": {
+      "description": "When the owning tool last wrote this section, as an ISO 8601 date and time with a time zone.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{1,9})?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$",
+      "examples": ["2026-11-14T09:30:00Z"]
+    },
+    "svg": {
+      "description": "An SVG image as text, at most 512 KB. Only ever show it through an <img> element (see svgDataUrl); never insert it into a page as markup.",
+      "type": "string",
+      "maxLength": 524288
+    },
+    "colour": {
+      "description": "A colour as a six-digit hex code.",
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$",
+      "examples": ["#2698d4"]
+    },
+    "meta": {
+      "description": "About the file itself. Every tool keeps this up to date when it saves.",
+      "type": "object",
+      "required": ["schema", "nation", "updated"],
+      "additionalProperties": true,
+      "properties": {
+        "schema": {
+          "description": "The version of this format. Always 1 for now.",
+          "const": 1
+        },
+        "nation": {
+          "description": "The nation's name, as the person calls it. Used for the file name. A tool that starts a new profile sets this and nothing else.",
+          "type": "string",
+          "maxLength": 80
+        },
+        "updated": {
+          "$ref": "#/$defs/updated",
+          "description": "When any tool last changed this file, as an ISO 8601 date and time with a time zone."
+        }
+      }
+    },
+    "identity": {
+      "description": "The nation's names and basics. Owned by Wiki; Card may edit it too. Every other tool reads it and never writes it.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "commonName": {
+          "description": "The short, everyday name, for example \"Calderwyn\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "officialName": {
+          "description": "The full, formal name, for example \"Kingdom of Calderwyn\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "capital": {
+          "description": "The capital city.",
+          "type": "string",
+          "maxLength": 80
+        },
+        "demonym": {
+          "description": "What the people are called, for example \"Calderwynian\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "motto": {
+          "description": "The national motto, without quotation marks.",
+          "type": "string",
+          "maxLength": 200
+        },
+        "languages": {
+          "description": "The official languages, most used first.",
+          "type": "array",
+          "maxItems": 20,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "flag": {
+      "description": "The national flag. Owned by Flagwright.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "svg": { "$ref": "#/$defs/svg", "description": "The flag as an SVG image, at most 512 KB. Only ever show it through an <img> element; never insert it into a page as markup." },
+        "ratio": {
+          "description": "The flag's proportions as height to width, for example \"2:3\".",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,3}:[1-9][0-9]{0,3}$",
+          "examples": ["2:3"]
+        },
+        "colours": {
+          "description": "The flag's colours as hex codes, the most used first.",
+          "type": "array",
+          "maxItems": 20,
+          "items": { "$ref": "#/$defs/colour" }
+        }
+      }
+    },
+    "arms": {
+      "description": "The coat of arms. Owned by Arms.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "svg": { "$ref": "#/$defs/svg", "description": "The arms as an SVG image, at most 512 KB. Only ever show it through an <img> element; never insert it into a page as markup." },
+        "blazon": {
+          "description": "The arms described in the language of heraldry, for example \"Azure, a chevron Or between three mullets argent\".",
+          "type": "string",
+          "maxLength": 400
+        }
+      }
+    },
+    "government": {
+      "description": "How the nation is governed. Owned by Governmint.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "form": {
+          "description": "The form of government, for example \"Parliamentary republic\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "headOfState": {
+          "description": "The head of state, with title, for example \"Queen Ilsa I\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "headOfGovernment": {
+          "description": "The head of government, with title, for example \"Prime Minister Aerin Kalluna\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "legislature": {
+          "description": "The name of the legislature, for example \"National Assembly\".",
+          "type": "string",
+          "maxLength": 80
+        }
+      }
+    },
+    "seats": {
+      "description": "The legislature's seats and who holds them. Owned by Seats.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "chamber": {
+          "description": "The name of the chamber, for example \"National Assembly\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "total": {
+          "description": "The number of seats in the chamber.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "system": {
+          "description": "The electoral system, for example \"D'Hondt\" or \"First past the post\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "election": {
+          "description": "A label for the election these seats come from, for example \"Election 2026\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "parties": {
+          "description": "The parties that hold seats, largest first.",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "required": ["name", "seats"],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "description": "The party's name.",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "seats": {
+                "description": "The number of seats the party holds.",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "colour": { "$ref": "#/$defs/colour", "description": "The party's colour as a six-digit hex code." }
+            }
+          }
+        }
+      }
+    },
+    "names": {
+      "description": "Names in the nation's own sound, picked in the name generator. Owned by Names.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "language": {
+          "description": "What the naming language is called, for example \"Coastal\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "places": {
+          "description": "Place names to draw on, for cities, regions and rivers.",
+          "type": "array",
+          "maxItems": 200,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "people": {
+          "description": "Given names to draw on.",
+          "type": "array",
+          "maxItems": 200,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "surnames": {
+          "description": "Family names to draw on.",
+          "type": "array",
+          "maxItems": 200,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "stats": {
+      "description": "The nation's headline numbers. Owned by Stats.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "population": {
+          "description": "The number of people.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "areaKm2": {
+          "description": "The land area in square kilometres.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000000000
+        },
+        "gdpUsd": {
+          "description": "Nominal GDP in US dollars, as a plain number (1.94 trillion is 1940000000000).",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000000000000000
+        },
+        "gdpGrowth": {
+          "description": "Real GDP growth in per cent a year, for example 2.1.",
+          "type": "number",
+          "minimum": -100,
+          "maximum": 1000
+        },
+        "lifeExpectancy": {
+          "description": "Life expectancy at birth, in years.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "activeMilitary": {
+          "description": "The number of active military personnel.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000000000
+        }
+      }
+    },
+    "dynasty": {
+      "description": "The ruling house and who comes next. Owned by Dynasty.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "house": {
+          "description": "The name of the house, for example \"House of Varenko\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "law": {
+          "description": "The succession law, for example \"Absolute primogeniture\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "monarch": {
+          "description": "The reigning monarch, with title.",
+          "type": "string",
+          "maxLength": 80
+        },
+        "heir": {
+          "description": "The heir, with title.",
+          "type": "string",
+          "maxLength": 80
+        },
+        "succession": {
+          "description": "The line of succession, first in line first.",
+          "type": "array",
+          "maxItems": 50,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "calendar": {
+      "description": "The nation's or world's calendar. Owned by Calendar (cal).",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "name": {
+          "description": "What the calendar is called, for example \"Selunnan Reckoning\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "daysPerYear": {
+          "description": "The number of days in an ordinary year.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "months": {
+          "description": "The months of the year, in order.",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "description": "The month's name.",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "days": {
+                "description": "The number of days in the month in an ordinary year.",
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000
+              }
+            }
+          }
+        },
+        "weekdays": {
+          "description": "The names of the days of the week, in order.",
+          "type": "array",
+          "maxItems": 30,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "era": {
+          "description": "The label written after a year, for example \"FS\" in \"1022 FS\".",
+          "type": "string",
+          "maxLength": 20
+        }
+      }
+    },
+    "timeline": {
+      "description": "The nation's history at a glance. Owned by Time.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "title": {
+          "description": "The timeline's title, for example \"History of the Oriental Coast\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "startYear": {
+          "description": "The first year the timeline covers. Years before year 1 are negative.",
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 1000000
+        },
+        "endYear": {
+          "description": "The last year the timeline covers.",
+          "type": "integer",
+          "minimum": -1000000,
+          "maximum": 1000000
+        },
+        "events": {
+          "description": "The key events, earliest first. A short list for other tools to quote, not the whole timeline.",
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "required": ["year", "title"],
+            "additionalProperties": true,
+            "properties": {
+              "year": {
+                "description": "The year of the event.",
+                "type": "integer",
+                "minimum": -1000000,
+                "maximum": 1000000
+              },
+              "title": {
+                "description": "What happened, in a few words.",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            }
+          }
+        }
+      }
+    },
+    "bank": {
+      "description": "The nation's money. Owned by Bank.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "currency": {
+          "description": "The name of the currency, for example \"Selun\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "code": {
+          "description": "The currency's short code, for example \"TLS\".",
+          "type": "string",
+          "maxLength": 10
+        },
+        "issuer": {
+          "description": "Who issues the banknotes, for example \"Bank of Teland\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "denominations": {
+          "description": "The values of the banknotes, largest first.",
+          "type": "array",
+          "maxItems": 50,
+          "items": { "type": "number", "minimum": 0, "maximum": 1000000000000 }
+        }
+      }
+    },
+    "passport": {
+      "description": "The nation's passport and identity documents. Owned by Passport.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "colour": { "$ref": "#/$defs/colour", "description": "The colour of the passport cover as a six-digit hex code." }
+      }
+    },
+    "rank": {
+      "description": "The ranks of the armed forces. Owned by Rank.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "branches": {
+          "description": "The branches of the armed forces, for example \"Army\" and \"Navy\".",
+          "type": "array",
+          "maxItems": 20,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "ranks": {
+          "description": "The ranks, highest first.",
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "description": "The name of the rank, for example \"Colonel\".",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "branch": {
+                "description": "The branch the rank belongs to, as named in \"branches\".",
+                "type": "string",
+                "maxLength": 80
+              }
+            }
+          }
+        }
+      }
+    },
+    "cities": {
+      "description": "The nation's largest cities. Owned by Cities.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "urbanisation": {
+          "description": "The share of people who live in towns and cities, in per cent.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "list": {
+          "description": "The cities, largest first.",
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "description": "The city's name.",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "population": {
+                "description": "The number of people who live in the city.",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000000000000
+              },
+              "capital": {
+                "description": "True for the capital city.",
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "anthem": {
+      "description": "The national anthem. Owned by Anthem.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "title": {
+          "description": "The anthem's title, for example \"Steady Against the Tide\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "lyrics": {
+          "description": "The words, as plain text: one line per line, with an empty line between verses.",
+          "type": "string",
+          "maxLength": 4000
+        }
+      }
+    },
+    "wiki": {
+      "description": "The nation's wiki page. Owned by Wiki, which also owns \"identity\".",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "link": { "$ref": "#/$defs/link" },
+        "summary": { "$ref": "#/$defs/summary" },
+        "updated": { "$ref": "#/$defs/updated" },
+        "drivesOn": {
+          "description": "The side of the road people drive on.",
+          "enum": ["left", "right"]
+        }
+      }
+    }
+  }
+}
