@@ -148,6 +148,10 @@ describe('validateProfile', () => {
     expect(messages({ meta, cities: { urbanisation: 140 } })).toEqual([
       'cities.urbanisation should be a number between 0 and 100.'
     ]);
+    expect(messages({ meta, cities: { largestShare: 140, exponent: 4 } })).toEqual([
+      'cities.largestShare should be a number between 0 and 100.',
+      'cities.exponent should be a number between 0 and 3.'
+    ]);
     expect(messages({ meta, cities: { list: [{ name: 'Wynmere' }, { name: 'Tarrowby', capital: 'no' }] } })).toEqual([
       'cities.list[1].capital should be true or false.'
     ]);

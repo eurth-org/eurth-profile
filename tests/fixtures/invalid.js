@@ -138,6 +138,10 @@ export const invalidProfiles = [
 
   // cities, anthem, wiki
   ['urbanisation over 100', withMeta({ cities: { urbanisation: 140 } })],
+  ['cities sized for half a person', withMeta({ cities: { population: 0.5 } })],
+  ['largest city with more than everyone', withMeta({ cities: { largestShare: 140 } })],
+  ['rank-size exponent as text', withMeta({ cities: { exponent: '1.0' } })],
+  ['rank-size exponent over 3', withMeta({ cities: { exponent: 4 } })],
   ['city without a name', withMeta({ cities: { list: [{ population: 5 }] } })],
   ['city with an empty name', withMeta({ cities: { list: [{ name: '' }] } })],
   ['city population as text', withMeta({ cities: { list: [{ name: 'Wynmere', population: '920,000' }] } })],
@@ -175,5 +179,7 @@ export const unusualButValid = [
   ['zero people', withMeta({ stats: { population: 0, areaKm2: 0.5, gdpGrowth: -3.2 } })],
   ['a year before year 1', withMeta({ timeline: { startYear: -753, events: [{ year: -753, title: 'The city is founded' }] } })],
   ['empty lists', withMeta({ names: { places: [], people: [], surnames: [] }, cities: { list: [] } })],
+  ['cities with their inputs and settings, and no list yet', withMeta({ cities: { population: 18361225, urbanisation: 47, largestShare: 28, exponent: 1 } })],
+  ['equal cities: a rank-size exponent of 0', withMeta({ cities: { largestShare: 12.5, exponent: 0 } })],
   ['a whole number written with a decimal point', JSON.parse(`{"meta":{"schema":1.0,"nation":"Calderwyn","updated":"${meta.updated}"},"seats":{"total":151.0}}`)]
 ];
