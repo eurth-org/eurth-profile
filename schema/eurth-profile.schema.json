@@ -504,7 +504,13 @@
         "link": { "$ref": "#/$defs/link" },
         "summary": { "$ref": "#/$defs/summary" },
         "updated": { "$ref": "#/$defs/updated" },
-        "colour": { "$ref": "#/$defs/colour", "description": "The colour of the passport cover as a six-digit hex code." }
+        "colour": { "$ref": "#/$defs/colour", "description": "The colour of the passport cover as a six-digit hex code." },
+        "title": {
+          "description": "The document's name as it is printed on the cover, for example \"Passport\".",
+          "type": "string",
+          "maxLength": 80
+        },
+        "svg": { "$ref": "#/$defs/svg", "description": "The passport's cover as an SVG image, at most 512 KB. Only ever show it through an <img> element; never insert it into a page as markup." }
       }
     },
     "rank": {

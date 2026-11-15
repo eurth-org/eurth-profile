@@ -417,6 +417,14 @@ export interface Passport {
    * A colour as a six-digit hex code.
    */
   colour?: string;
+  /**
+   * The document's name as it is printed on the cover, for example "Passport".
+   */
+  title?: string;
+  /**
+   * The passport's cover as an SVG image, at most 512 KB. Only ever show it through an <img> element; never insert it into a page as markup.
+   */
+  svg?: string;
   [k: string]: unknown;
 }
 /**
