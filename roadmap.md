@@ -10,6 +10,7 @@ Three parts: what comes next, what each release added (newest first), and what's
 - **Put the schema at its address:** `https://style.eurth.org/schemas/eurth-profile-1.json` is the schema's `$id`, and nothing is served there yet.
 - **Flagwright and Governmint first:** both exist already. Each gets the two profile buttons, writes its own section and reads `identity`.
 - **Settle each section with its tool:** the fields of the tools that are still mock-ups (arms, seats, names, stats, dynasty, calendar, timeline, bank, passport, rank, cities, anthem, wiki) were drafted from those mock-ups. As each tool is built, add what it turns out to need. Adding a field is a minor release; changing one is not possible within 1.x, so keep drafts small.
+- **Release 1.1.0 with Passport's fields:** `passport.title` (the document's name as printed on the cover) and `passport.svg` (the cover as a picture, for Card and Wiki to show) are in the schema, waiting for a release.
 - **A "what changed" helper** for tools that want to tell the person which sections a loaded file brought in.
 - **A type check of `ProfileButtons.svelte` in CI** (`svelte-check`); for now a test mounts it.
 

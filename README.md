@@ -59,7 +59,7 @@ On top of those, each section has a few typed fields that other tools are likely
 | `calendar` | Calendar | `name`, `daysPerYear`, `months` (`name`, `days`), `weekdays`, `era` |
 | `timeline` | Time | `title`, `startYear`, `endYear`, `events` (`year`, `title`) |
 | `bank` | Bank | `currency`, `code`, `issuer`, `denominations` |
-| `passport` | Passport | `colour` |
+| `passport` | Passport | `colour`, `title`, `svg` |
 | `rank` | Rank | `branches`, `ranks` (`name`, `branch`) |
 | `cities` | Cities | `urbanisation`, `list` (`name`, `population`, `capital`) |
 | `anthem` | Anthem | `title`, `lyrics` |

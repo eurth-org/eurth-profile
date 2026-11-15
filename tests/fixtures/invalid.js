@@ -83,6 +83,12 @@ export const invalidProfiles = [
   ['too many colours', withMeta({ flag: { colours: Array(21).fill('#ffffff') } })],
   ['blazon too long', withMeta({ arms: { blazon: 'b'.repeat(401) } })],
 
+  // passport
+  ['passport title is a number', withMeta({ passport: { title: 7 } })],
+  ['passport title too long', withMeta({ passport: { title: 't'.repeat(81) } })],
+  ['passport cover too long', withMeta({ passport: { svg: `<svg>${'x'.repeat(524288)}</svg>` } })],
+  ['passport cover is a list', withMeta({ passport: { svg: ['<svg/>'] } })],
+
   // government and seats
   ['form is a list', withMeta({ government: { form: ['Republic'] } })],
   ['head of state too long', withMeta({ government: { headOfState: 'h'.repeat(81) } })],
@@ -172,6 +178,8 @@ export const unusualButValid = [
   ['a summary of exactly 600 characters', withMeta({ stats: { summary: 's'.repeat(600) } })],
   ['a link of exactly 4000 characters', withMeta({ flag: { link: 'https://flag.eurth.org/#'.padEnd(4000, 'a') } })],
   ['an svg of exactly 512 KB', withMeta({ flag: { svg: `<svg>${'x'.repeat(524288 - 11)}</svg>` } })],
+  ['a passport with a title, a cover and a key the schema does not name', withMeta({ passport: { colour: '#5b1a28', title: 'Passport', svg: '<svg xmlns="http://www.w3.org/2000/svg"/>', design: { cover: { foil: 'silver' } } } })],
+  ['a passport title of exactly 80 characters', withMeta({ passport: { title: 't'.repeat(80) } })],
   ['zero people', withMeta({ stats: { population: 0, areaKm2: 0.5, gdpGrowth: -3.2 } })],
   ['a year before year 1', withMeta({ timeline: { startYear: -753, events: [{ year: -753, title: 'The city is founded' }] } })],
   ['empty lists', withMeta({ names: { places: [], people: [], surnames: [] }, cities: { list: [] } })],
