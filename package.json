@@ -1,6 +1,6 @@
 {
   "name": "@eurth/profile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Eurth nation profile: one small JSON file that carries a nation from one Eurth worldbuilding tool to the next. Schema, types and a small library to read, check, merge, save and load it.",
   "type": "module",
   "license": "Apache-2.0",

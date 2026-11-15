@@ -13,6 +13,10 @@ Three parts: what comes next, what each release added (newest first), and what's
 - **A "what changed" helper** for tools that want to tell the person which sections a loaded file brought in.
 - **A type check of `ProfileButtons.svelte` in CI** (`svelte-check`); for now a test mounts it.
 
+## 15 November 2026: 1.0.1
+
+- **A plainer message for the wrong file:** a JSON file with no `meta` section is answered with "This file isn't a nation profile…" and what to pick, where it used to say "meta is missing."
+
 ## 14 November 2026: 1.0.0
 
 The first version.

@@ -118,8 +118,8 @@ describe('parseProfile', () => {
     expect(parseMessages('null')).toEqual(['The profile should be a JSON object with a "meta" section.']);
     expect(parseMessages('[]')).toEqual(['The profile should be a JSON object with a "meta" section.']);
     expect(parseMessages('"Calderwyn"')).toEqual(['The profile should be a JSON object with a "meta" section.']);
-    expect(parseMessages('{}')).toEqual(['meta is missing.']);
-    expect(parseMessages('{"name":"some-package","version":"1.0.0"}')).toEqual(['meta is missing.']);
+    expect(parseMessages('{}')).toEqual(['This file isn\'t a nation profile: it has no "meta" section. Pick a file that ends in .eurth.json.']);
+    expect(parseMessages('{"name":"some-package","version":"1.0.0"}')).toEqual(['This file isn\'t a nation profile: it has no "meta" section. Pick a file that ends in .eurth.json.']);
   });
 
   it('turns away a file over 2 MB before reading it as JSON', () => {

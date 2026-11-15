@@ -364,6 +364,8 @@ function scan(root) {
   return null;
 }
 
+const NOT_A_PROFILE = 'This file isn\'t a nation profile: it has no "meta" section. Pick a file that ends in .eurth.json.';
+
 /**
  * Checks that a value is a profile this package can work with. Treat every
  * loaded file as someone else's input and pass it through here (`parseProfile`
@@ -387,6 +389,10 @@ export function validateProfile(value) {
   if (hostile) return { ok: false, errors: [hostile] };
 
   const meta = value.meta;
+  // Some other JSON file, picked by mistake: say so in a sentence, not as a missing field.
+  if (meta === undefined) {
+    return { ok: false, errors: [{ path: 'meta', message: NOT_A_PROFILE }] };
+  }
   if (isObject(meta) && typeof meta.schema === 'number' && meta.schema > SCHEMA_VERSION) {
     return {
       ok: false,

@@ -93,7 +93,7 @@ describe('readProfileFile', () => {
 
   it('gives the problems for a file that is not a profile', async () => {
     const result = await readProfileFile(fileOf('{"name":"something else"}', 'package.json'));
-    expect(result).toEqual({ ok: false, errors: [{ path: 'meta', message: 'meta is missing.' }] });
+    expect(result).toEqual({ ok: false, errors: [{ path: 'meta', message: 'This file isn\'t a nation profile: it has no "meta" section. Pick a file that ends in .eurth.json.' }] });
     expect((await readProfileFile(fileOf('not json'))).ok).toBe(false);
     expect((await readProfileFile(fileOf(''))).ok).toBe(false);
   });

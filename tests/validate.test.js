@@ -169,7 +169,7 @@ describe('validateProfile', () => {
     expect(messages({ meta, wiki: { drivesOn: 'middle' } })).toEqual(['wiki.drivesOn should be "left" or "right".']);
     expect(messages({ meta, flag: [] })).toEqual(['flag should be a JSON object.']);
     expect(messages({ meta: { nation: 'Calderwyn' } })).toEqual(['meta.schema is missing.', 'meta.updated is missing.']);
-    expect(messages({})).toEqual(['meta is missing.']);
+    expect(messages({})).toEqual(['This file isn\'t a nation profile: it has no "meta" section. Pick a file that ends in .eurth.json.']);
     expect(messages([])).toEqual(['The profile should be a JSON object with a "meta" section.']);
     expect(messages(null)).toEqual(['The profile should be a JSON object with a "meta" section.']);
     expect(messages({ meta: { ...meta, schema: 0 } })).toEqual(['meta.schema should be 1.']);
