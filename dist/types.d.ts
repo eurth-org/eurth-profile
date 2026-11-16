@@ -498,6 +498,24 @@ export interface Anthem {
    * The words, as plain text: one line per line, with an empty line between verses.
    */
   lyrics?: string;
+  /**
+   * The hymn metre, as printed on a hymn sheet: the syllables of each line, for example "8.7.8.7", or "free".
+   */
+  metre?: string;
+  /**
+   * The rhyme scheme of each verse, for example "ABAB".
+   */
+  rhyme?: string;
+  /**
+   * The mood the words were written in, for example "solemn hymn".
+   */
+  mood?: string;
+  /**
+   * What the anthem sings of, most important first, for example ["sea", "freedom"].
+   *
+   * @maxItems 12
+   */
+  themes?: string[];
   [k: string]: unknown;
 }
 /**

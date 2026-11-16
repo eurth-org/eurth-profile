@@ -145,6 +145,11 @@ export const invalidProfiles = [
   ['too many cities', withMeta({ cities: { list: Array(201).fill({ name: 'Wynmere' }) } })],
   ['lyrics too long', withMeta({ anthem: { lyrics: 'la '.repeat(1400) } })],
   ['anthem title is a number', withMeta({ anthem: { title: 9 } })],
+  ['anthem metre as a list of numbers', withMeta({ anthem: { metre: [8, 7, 8, 7] } })],
+  ['anthem rhyme scheme too long', withMeta({ anthem: { rhyme: 'AB'.repeat(11) } })],
+  ['anthem themes as one text', withMeta({ anthem: { themes: 'sea, freedom' } })],
+  ['an empty anthem theme', withMeta({ anthem: { themes: ['sea', ''] } })],
+  ['too many anthem themes', withMeta({ anthem: { themes: Array.from({ length: 13 }, (_, i) => `theme ${i}`) } })],
   ['drives on the middle', withMeta({ wiki: { drivesOn: 'middle' } })],
   ['drives on Left with a capital', withMeta({ wiki: { drivesOn: 'Left' } })]
 ];
@@ -174,6 +179,8 @@ export const unusualButValid = [
   ['an svg of exactly 512 KB', withMeta({ flag: { svg: `<svg>${'x'.repeat(524288 - 11)}</svg>` } })],
   ['zero people', withMeta({ stats: { population: 0, areaKm2: 0.5, gdpGrowth: -3.2 } })],
   ['a year before year 1', withMeta({ timeline: { startYear: -753, events: [{ year: -753, title: 'The city is founded' }] } })],
+  ['an anthem with its metre and settings, and no words yet', withMeta({ anthem: { metre: '8.7.8.7', rhyme: 'ABAB', mood: 'solemn hymn', themes: ['sea', 'freedom', 'unity'] } })],
+  ['an anthem in free verse on no theme', withMeta({ anthem: { title: 'Lanterns on the Water', metre: 'free', themes: [] } })],
   ['empty lists', withMeta({ names: { places: [], people: [], surnames: [] }, cities: { list: [] } })],
   ['a whole number written with a decimal point', JSON.parse(`{"meta":{"schema":1.0,"nation":"Calderwyn","updated":"${meta.updated}"},"seats":{"total":151.0}}`)]
 ];
