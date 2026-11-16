@@ -148,6 +148,10 @@ describe('validateProfile', () => {
     expect(messages({ meta, cities: { urbanisation: 140 } })).toEqual([
       'cities.urbanisation should be a number between 0 and 100.'
     ]);
+    expect(messages({ meta, anthem: { metre: [8, 7, 8, 7], themes: ['sea', ''] } })).toEqual([
+      'anthem.metre should be text of at most 20 characters.',
+      'anthem.themes[1] should be text of 1 to 40 characters.'
+    ]);
     expect(messages({ meta, cities: { list: [{ name: 'Wynmere' }, { name: 'Tarrowby', capital: 'no' }] } })).toEqual([
       'cities.list[1].capital should be true or false.'
     ]);

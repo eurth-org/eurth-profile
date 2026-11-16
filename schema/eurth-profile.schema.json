@@ -607,6 +607,31 @@
           "description": "The words, as plain text: one line per line, with an empty line between verses.",
           "type": "string",
           "maxLength": 4000
+        },
+        "metre": {
+          "description": "The hymn metre, as printed on a hymn sheet: the syllables of each line, for example \"8.7.8.7\", or \"free\".",
+          "type": "string",
+          "maxLength": 20
+        },
+        "rhyme": {
+          "description": "The rhyme scheme of each verse, for example \"ABAB\".",
+          "type": "string",
+          "maxLength": 20
+        },
+        "mood": {
+          "description": "The mood the words were written in, for example \"solemn hymn\".",
+          "type": "string",
+          "maxLength": 40
+        },
+        "themes": {
+          "description": "What the anthem sings of, most important first, for example [\"sea\", \"freedom\"].",
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
         }
       }
     },

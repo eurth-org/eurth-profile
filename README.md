@@ -62,7 +62,7 @@ On top of those, each section has a few typed fields that other tools are likely
 | `passport` | Passport | `colour` |
 | `rank` | Rank | `branches`, `ranks` (`name`, `branch`) |
 | `cities` | Cities | `urbanisation`, `list` (`name`, `population`, `capital`) |
-| `anthem` | Anthem | `title`, `lyrics` |
+| `anthem` | Anthem | `title`, `lyrics`, `metre`, `rhyme`, `mood`, `themes` |
 | `wiki` | Wiki | `drivesOn` |
 
 The full description of every field, with its limits, is in [the schema](schema/eurth-profile.schema.json) (JSON Schema, draft 2020-12).
